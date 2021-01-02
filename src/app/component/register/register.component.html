@@ -1,0 +1,100 @@
+<div>
+    <app-header title="Book Store Registration"></app-header>
+    <div class="main" fxLayoutAlign="center center" fxFlex="100" fxFlexOffset.xs="0" fxFlex.xs="100">
+        <mat-card fxFlex.xs="100">
+            <div>
+                <form [formGroup]="registerForm" autocomplete="off" novalidate
+                    (ngSubmit)="register(registerForm.value)">
+                    <div>
+                        <div>
+                            <mat-card-subtitle>Create your Bookstore Account</mat-card-subtitle>
+                        </div>
+                        <mat-card-content>
+                            <div class="form-div">
+                                <mat-form-field appearance="outline" fxFlex="100" fxFlex.xs="100">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput type="text" placeholder="firstName" formControlName="firstName"
+                                        id="fisrtName">
+                                    <mat-error *ngIf="registerForm.hasError('firstName', 'required')">Name is required
+                                    </mat-error>
+                                    <mat-error *ngIf="registerForm.hasError('firstName', 'minlength')">name should be
+                                        more than 3 characters
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" fxFlex.xs="100">
+                                    <mat-label>Last Name</mat-label>
+                                    <input matInput type="text" placeholder="LastName" formControlName="lastName"
+                                        id="lastName">
+                                    <mat-error *ngIf="registerForm.hasError('lastName', 'required')">Name is required
+                                    </mat-error>
+                                    <mat-error *ngIf="registerForm.hasError('lastName', 'minlength')">name should be
+                                        more than 3 char
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="outline" fxFlex="91" fxFlex.xs="100">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput type="text" placeholder="Email" class="email"
+                                        formControlName="email" id="email">
+                                    <mat-error *ngIf="registerForm.hasError('email', 'required')">email is required
+                                    </mat-error>
+                                    <mat-error *ngIf="registerForm.hasError('email', 'email')">invalid mail</mat-error>
+                                    <mat-hint>You can use letters,Numbers</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-div">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput type="text" placeholder="Password" formControlName="password"
+                                        id="password" [type]="hide ? 'password' : 'text'">
+                                    <!-- <mat-error *ngIf="registerForm.hasError('required', 'password')">
+                                        atleast 1 small,1 Capital, 1 digit, 1 special char and length 6-10
+                                        characters.
+                                    </mat-error> -->
+                                    <mat-error *ngIf="registerForm.hasError('required', 'password')">password is
+                                        required</mat-error>
+                                    <mat-error *ngIf="registerForm.hasError('password', 'minlength')">password
+                                        length should be 6
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Confirm Password</mat-label>
+                                    <input matInput type="text" placeholder="Confirm" formControlName="cpassword"
+                                        id="cpassword" [type]="hide ? 'password' : 'text'">
+                                    <mat-error *ngIf="registerForm.hasError('required', 'password')">pasword is
+                                        required</mat-error>
+                                    <mat-error *ngIf="registerForm.hasError('cpassword', 'minlength')">password
+                                        length should be 6
+                                    </mat-error>
+                                    <mat-error *ngIf="registerForm.hasError('notSame')">
+                                        Passwords did not match
+                                    </mat-error>
+                                </mat-form-field>
+                                <div>
+                                    <button class="btn" mat-icon-button matSuffix (click)="hide = !hide"
+                                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" class="i">
+                                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="hint"><span>Use 8 or more characters with a mix of letters, numbers &
+                                    symbols</span>
+                            </div>
+                            <div class="service" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+                                fxLayoutAlign.xs="space-around center" fxLayoutAlign.lg="start center"
+                                fxLayoutAlign.sm="space-around center" fxLayoutGap.sm='5%' fxLayoutGap.xs='5%'
+                                fxLayoutGap.lg='7%' fxLayoutAlign="space-around none">
+                            </div>
+                            <div class="bottom">
+                                <a class="signIn" (click)="login()">login in instead</a>
+                                <button mat-raised-button [disabled]="!registerForm.valid">REGISTER</button>
+                            </div>
+                        </mat-card-content>
+                    </div>
+                </form>
+            </div>
+        </mat-card>
+    </div>
+</div>

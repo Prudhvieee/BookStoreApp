@@ -1,0 +1,18 @@
+<mat-toolbar class="header">
+    <mat-toolbar-row>
+        <img src="../../assets/book.png">
+        <span>Book Store</span>
+        <span [formGroup]="header" class="input-feild">
+            <div class="btn-group">
+                <button mat-button><mat-icon>search</mat-icon></button>
+                <input matInput type="text" formControlName="dataa" autocomplete="off" placeholder="search">
+            </div>
+        </span>
+        <button mat-icon-button #tooltip="matTooltip" matTooltip="wishlist">
+            <mat-icon matBadge="{{list}}" matBadgeColor="warn" routerLink="list">favorite_border</mat-icon>
+        </button>
+        <button mat-icon-button #tooltip="matTooltip" matTooltip="cart" (click)="goToCart()" class="bag">
+            <mat-icon matBadge="{{bag}}" matBadgeColor="warn" routerLink="/dashboard/cart">shopping_cart</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,22 @@
+<div class="flexrow">
+    <mat-card *ngFor=" let book of booksArray" class="grid-item">
+        <mat-card-content class="cover">
+            <img src="../../../assets/book.png" alt="image error">
+        </mat-card-content>
+        <mat-card-content class="detail">
+            <mat-card-title>{{book.bookName}}</mat-card-title>
+            <mat-card-subtitle>by {{book.author}}</mat-card-subtitle>
+            <p>
+                <button mat-raised-button color="primary" disabled matBadgePosition="before" matBadgeColor="accent">
+                    {{review()}} &#9733;
+                </button>({{book.quantity}})
+            </p>
+            <span><b>Rs {{book.price}}</b>
+            </span>
+        </mat-card-content>
+        <div class="butt">
+            <button class="but" mat-raised-button (click)="addcart(book)">add to bag</button>
+            <button class="whishlist" mat-raised-button>wishlist</button>
+        </div>
+    </mat-card>
+</div>

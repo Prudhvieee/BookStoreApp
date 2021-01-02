@@ -1,0 +1,44 @@
+.header {
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+.form-div {
+  margin-bottom: none;
+  display: flex;
+}
+.main {
+  text-align: -webkit-center;
+}
+.product-img-div {
+  display: flex;
+}
+.product-div {
+  padding-top: 44px;
+  line-height: 28px;
+  margin-left: 15px;
+  text-align: left;
+}
+.mat-div {
+  width: 600px;
+  margin-right: auto;
+}
+.mat-expansion-panel {
+  width: 800px;
+  border: 1px solid rgb(126, 120, 120);
+}
+.mat-form-field {
+  margin-right: 10px;
+}
+.address-div {
+  text-align: initial;
+}
+.address-field {
+  width: 410px;
+}
+.mat-radio {
+  display: flex;
+}
+.mat-expansion-panel {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

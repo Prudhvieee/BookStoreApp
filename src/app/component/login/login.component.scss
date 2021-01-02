@@ -1,0 +1,80 @@
+.card {
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  position: relative;
+  padding: 16px;
+  border-radius: 4px;
+  width: 500px;
+}
+.main {
+  width: 100%;
+  max-width: 463px;
+  margin: 20px auto;
+  padding: 4em;
+  height: auto;
+  min-height: 500px;
+  text-align: center;
+}
+.mat-card-title{
+  color: #A03037;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+.mat-card-subtitle {
+  color: #202124;
+  padding-bottom: 3px;
+  font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-indent: 7px;
+}
+.mat-form-field {
+  width: -webkit-fill-available;
+  padding: 15px;
+  outline-color: #A03037;
+}
+.mat-card-content {
+  width: 413px;
+  padding: 0.6em;
+}
+.i {
+  margin-top: 0%;
+}
+.signIn {
+  color: #A03037;
+  font-weight: bold;
+  cursor: pointer;
+}
+.card :hover {
+  background-color: #ffa500;
+  transform: scale(1.1);
+}
+.service {
+  margin-left: 36px;
+  margin-top: 36px;
+}
+.message {
+  margin-top: 8px;
+}
+.forgotPassword {
+  display: flex;
+  text-indent: 14px;
+  color: #A03037;
+}
+.btn{
+  background-color: #A03037;
+}
+.bottom {
+  box-sizing: inherit;
+  display: flex;
+  justify-content: space-between;
+  text-indent: 15px;
+}
+.mat-raised-button{
+background-color: #A03037;
+color: white;
+}

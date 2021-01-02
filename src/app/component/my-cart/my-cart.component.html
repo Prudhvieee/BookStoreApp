@@ -1,0 +1,123 @@
+<div class="header">
+    <app-headers></app-headers>
+</div>
+<mat-accordion>
+    <div class="main">
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle (opened)="setStep(0)">
+            <mat-expansion-panel-header>
+                <mat-panel-title>My Cart</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="product-img-div">
+                <div>
+                    <mat-card-content class="cover">
+                        <img src="../../../assets/book.png">
+                    </mat-card-content>
+                </div>
+                <div class="product-div">
+                    <mat-card-content class="detail">
+                        <div *ngFor="let book of books">
+                            <mat-card-title>{{book.bookName}}</mat-card-title><br>
+                            <mat-card-subtitle>by {{book.author}}</mat-card-subtitle><br>
+                            <span><b>Rs {{book.price}}</b></span>
+                        </div>
+                    </mat-card-content>
+                </div>
+            </div>
+            <mat-action-row>
+                <button mat-button color="primary" (click)="nextStep()">Place order</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+    </div>
+</mat-accordion>
+<mat-accordion>
+    <div class="main">
+        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Customer Details</mat-panel-title>
+            </mat-expansion-panel-header>
+            <form [formGroup]="customerForm">
+                <div class="mat-div">
+                    <div class="form-div">
+                        <mat-form-field appearance="outline">
+                            <mat-label>First Name</mat-label>
+                            <input matInput type="text" placeholder="firstName" formControlName="firstName"
+                                id="fisrtName">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Phone number</mat-label>
+                            <input matInput type="text" placeholder="PhoneNumber" formControlName="PhoneNumber"
+                                id="PhoneNumber">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-div">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Pin Code</mat-label>
+                            <input matInput type="text" placeholder="PinCode" formControlName="PinCode" id="PinCode">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Locality</mat-label>
+                            <input matInput type="text" placeholder="Locality" formControlName="Locality" id="Locality">
+                        </mat-form-field>
+                    </div>
+                    <div class="address-div">
+                        <mat-form-field class="address-field" appearance="outline">
+                            <mat-label>Address</mat-label>
+                            <textarea matInput type="text" placeholder="Address" formControlName="Address"
+                                id="Address"></textarea>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-div">
+                        <mat-form-field appearance="outline">
+                            <mat-label>City/Town</mat-label>
+                            <input matInput type="text" placeholder="City/Town" formControlName="City" id="City/Town">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>LandMark</mat-label>
+                            <input matInput type="text" placeholder="LandMark" formControlName="LandMark" id="LandMark">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-radio-group aria-label="Type">
+                            <div class="mat-radio">
+                                <mat-radio-button value="1">Home</mat-radio-button>
+                                <mat-radio-button value="2">Work</mat-radio-button>
+                                <mat-radio-button value="3">Other</mat-radio-button>
+                            </div>
+                        </mat-radio-group>
+                    </div>
+                </div>
+            </form>
+            <mat-action-row>
+                <button mat-button color="primary" (click)="nextStep()">Continue</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+    </div>
+</mat-accordion>
+<mat-accordion>
+    <div class="main">
+        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Order</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="product-img-div">
+                <div>
+                    <mat-card-content class="cover">
+                        <img src="../../../assets/book.png">
+                    </mat-card-content>
+                </div>
+                <div class="product-div">
+                    <mat-card-content class="detail">
+                        <div *ngFor="let book of books">
+                            <mat-card-title>{{book.bookName}}</mat-card-title><br>
+                            <mat-card-subtitle>by {{book.author}}</mat-card-subtitle><br>
+                            <span><b>Rs {{book.price}}</b></span>
+                        </div>
+                    </mat-card-content>
+                </div>
+            </div>
+            <div class="bottom">
+                <button mat-raised-button color="primary" (click)="checkout()">CheckOut</button>
+            </div>
+        </mat-expansion-panel>
+    </div>
+</mat-accordion>

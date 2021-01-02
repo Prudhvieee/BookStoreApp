@@ -1,0 +1,52 @@
+<div>
+    <app-header title="Book Store"></app-header>
+    <div class="main" fxLayoutAlign="center center" fxFlex="100" fxFlexOffset.xs="0" fxFlex.xs="100">
+        <mat-card fxFlex.xs="100">
+            <div>
+                <div>
+                    <mat-card-title><h1>LogIn</h1></mat-card-title>
+                </div>
+                <form [formGroup]="loginForm" autocomplete="off" novalidate (ngSubmit)="login(loginForm.value)">
+                    <div>
+                        <div>
+                            <mat-card-subtitle>To Continue To Bookstore</mat-card-subtitle>
+                        </div>
+                        <mat-card-content>
+                            <div>
+                                <mat-form-field appearance="outline" fxFlex="91" fxFlex.xs="100">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput type="text" placeholder="Email" class="email" formControlName="email"
+                                        id="email">
+                                    <mat-error *ngIf="loginForm.hasError('email', 'required')">email is required
+                                    </mat-error>
+                                    <mat-error *ngIf="loginForm.hasError('email', 'email')">invalid mail</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <div>
+                                    <mat-form-field appearance="outline" fxFlex.xs="100">
+                                        <mat-label>Password</mat-label>
+                                        <input matInput type="text" placeholder="Password" formControlName="password"
+                                            id="password" [type]="hide ? 'password' : 'text'">
+                                        <mat-error *ngIf="loginForm.hasError('required', 'password')">password is
+                                            required</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="forgotPassword"><a (click)="forgotPassword()">Forgot Password</a></div>
+                            </div>
+                            <div class="service" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+                                fxLayoutAlign.xs="space-around center" fxLayoutAlign.lg="start center"
+                                fxLayoutAlign.sm="space-around center" fxLayoutGap.sm='10%' fxLayoutGap.xs='10%'
+                                fxLayoutGap.lg='7%' fxLayoutAlign="space-around none">
+                            </div>
+                            <div class="bottom">
+                                <a class="signIn" (click)="register()">Register</a>
+                                <button mat-raised-button [disabled]="!loginForm.valid">LogIn</button>
+                            </div>
+                        </mat-card-content>
+                    </div>
+                </form>
+            </div>
+        </mat-card>
+    </div>
+</div>
