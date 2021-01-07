@@ -24,66 +24,51 @@ export class RegisterComponent implements OnInit {
     private userService: UserService
   ) {}
   ngOnInit(): void {
-    this.registerForm = this.formBuilder.group(
-      {
-        firstName: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(3),
-            Validators.maxLength(12),
-            Validators.pattern('[a-zA-Z ]*'),
-          ],
+    this.registerForm = this.formBuilder.group({
+      fullName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(12),
+          Validators.pattern('[a-zA-Z ]*'),
         ],
-        lastName: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(3),
-            Validators.maxLength(12),
-            Validators.pattern('[a-zA-Z ]*'),
-          ],
+      ],
+      email: ['', [Validators.required, Validators.email]],
+      phone: [
+        '',
+        [Validators.pattern('^[6-9]{1}[0-9]{9}$'), Validators.required],
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.pattern(
+            '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
+          ),
         ],
-        email: ['', [Validators.required, Validators.email]],
-        password: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(6),
-            Validators.pattern(
-              '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
-            ),
-          ],
-        ],
-        cpassword: ['', [Validators.minLength(6)]],
-      },
-      { validator: this.checkPasswords }
-    );
-  }
-  checkPasswords(group: FormGroup) {
-    // here we have the 'passwords' group
-    let pass = group.controls.password.value;
-    let confirmPass = group.controls.cpassword.value;
-    return pass === confirmPass ? null : { notSame: true };
+      ],
+    });
   }
   register = (registerFormValue: {
-    firstName: any;
-    lastName: any;
+    fullName: any;
     email: any;
+    phone: any;
     password: any;
   }) => {
     try {
       let newUser = {
-        firstName: registerFormValue.firstName,
-        lastName: registerFormValue.lastName,
+        fullName: registerFormValue.fullName,
         email: registerFormValue.email,
+        phone: registerFormValue.phone,
         password: registerFormValue.password,
-        service: 'advance',
+        // service: 'advance',
       };
       this.userService.registerUser(newUser).subscribe((response) => {
         console.log(' register successfulll', response);
-      });
-      this.router.navigate(['login']);
+        this.router.navigate(['login']);
+      });      
     } catch (error) {
       console.log(error);
     }

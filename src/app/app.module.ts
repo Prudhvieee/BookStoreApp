@@ -30,6 +30,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { OrderComponent } from './component/order/order.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatCardModule,HttpClientModule,MatMenuModule,MatDialogModule,
     MatSidenavModule,MatToolbarModule,MatListModule,MatButtonToggleModule,
     MatInputModule,MatTooltipModule,MatBadgeModule,MatExpansionModule,
-    MatRadioModule,MatStepperModule
+    MatRadioModule,MatStepperModule,MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

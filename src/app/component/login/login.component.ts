@@ -33,9 +33,9 @@ export class LoginComponent implements OnInit {
       password: loginform.password,
     };
     console.log(reqData);
-    this.userService.loginUser(reqData).subscribe((res) => {
-      console.log(' resgister success full ', res);
-      localStorage.setItem('token', res['id']);
+    this.userService.loginUser(reqData).subscribe((res:any) => {
+      console.log(' resgister success full ', res['token']);
+      localStorage.setItem('token', res['token']);
       this.router.navigate(['dashboard']);
     });
   }

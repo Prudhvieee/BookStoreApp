@@ -7,18 +7,36 @@
             <mat-expansion-panel-header>
                 <mat-panel-title>My Cart</mat-panel-title>
             </mat-expansion-panel-header>
-            <div class="product-img-div">
+            <div>
                 <div>
-                    <mat-card-content class="cover">
-                        <img src="../../../assets/book.png">
-                    </mat-card-content>
-                </div>
-                <div class="product-div">
                     <mat-card-content class="detail">
-                        <div *ngFor="let book of books">
-                            <mat-card-title>{{book.bookName}}</mat-card-title><br>
-                            <mat-card-subtitle>by {{book.author}}</mat-card-subtitle><br>
-                            <span><b>Rs {{book.price}}</b></span>
+                        <div class="product-img-div" *ngFor="let book of books;">
+                            <div>
+                                <mat-card-content class="cover">
+                                    <img src={{book.bookImage}}>
+                                </mat-card-content>
+                            </div>
+                            <div class="product-div">
+                                <mat-card-title>{{book.bookName}}</mat-card-title><br>
+                                <mat-card-subtitle>by {{book.author}}</mat-card-subtitle><br>
+                                <span><b>Rs {{i*book.price}}</b></span>
+                                <div>
+                                    <button mat-icon-button *ngIf="book.isValid" (click)="remove(book,0)">
+                                        <mat-icon>remove_circle_outline</mat-icon>
+                                    </button>
+                                    <button mat-icon-button *ngIf="!book.isValid" (click)="remove(book,1)">
+                                        <mat-icon>remove_circle_outline</mat-icon>
+                                    </button>
+                                    {{i}}
+                                    <button mat-icon-button *ngIf="book.isValid"  (click)="add(book,5)">
+                                        <mat-icon>add_circle_outline</mat-icon>
+                                    </button>
+                                    <button mat-icon-button *ngIf="!book.isValid"  (click)="add(book,5)">
+                                        <mat-icon>add_circle_outline</mat-icon>
+                                    </button>
+                                    <button mat-stroked-button (click)="removeItem(book)">remove</button>
+                                </div>
+                            </div>
                         </div>
                     </mat-card-content>
                 </div>

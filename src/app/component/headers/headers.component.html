@@ -1,11 +1,11 @@
 <mat-toolbar class="header">
     <mat-toolbar-row>
         <img src="../../assets/book.png">
-        <span>Book Store</span>
+        <span class="bookstore" (click)="dashboard()">Book Store</span>
         <span [formGroup]="header" class="input-feild">
-            <div class="btn-group">
-                <button mat-button><mat-icon>search</mat-icon></button>
-                <input matInput type="text" formControlName="dataa" autocomplete="off" placeholder="search">
+            <div class="search">
+                <span class="fa fa-search"></span>
+                <input placeholder="Search">
             </div>
         </span>
         <button mat-icon-button #tooltip="matTooltip" matTooltip="wishlist">

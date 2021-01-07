@@ -8,6 +8,7 @@
 }
 .main {
   text-align: -webkit-center;
+  margin-top: 15px;
 }
 .product-img-div {
   display: flex;
@@ -41,4 +42,8 @@
 .mat-expansion-panel {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+.mat-stroked-button{
+  outline:none;
+  border: none;
 }
