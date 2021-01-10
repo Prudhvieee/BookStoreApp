@@ -4,7 +4,9 @@
         <mat-card fxFlex.xs="100">
             <div>
                 <div>
-                    <mat-card-title><h1>LogIn</h1></mat-card-title>
+                    <mat-card-title>
+                        <h1>LogIn</h1>
+                    </mat-card-title>
                 </div>
                 <form [formGroup]="loginForm" autocomplete="off" novalidate (ngSubmit)="login(loginForm.value)">
                     <div>
@@ -15,11 +17,12 @@
                             <div>
                                 <mat-form-field appearance="outline" fxFlex="91" fxFlex.xs="100">
                                     <mat-label>Email</mat-label>
-                                    <input matInput type="text" placeholder="Email" class="email" formControlName="email"
-                                        id="email">
+                                    <input matInput type="text" placeholder="Email" class="email"
+                                        formControlName="email" id="email">
                                     <mat-error *ngIf="loginForm.hasError('email', 'required')">email is required
                                     </mat-error>
                                     <mat-error *ngIf="loginForm.hasError('email', 'email')">invalid Email</mat-error>
+                                    <mat-icon matSuffix>email</mat-icon>
                                 </mat-form-field>
                             </div>
                             <div>
@@ -28,6 +31,10 @@
                                         <mat-label>Password</mat-label>
                                         <input matInput type="text" placeholder="Password" formControlName="password"
                                             id="password" [type]="hide ? 'password' : 'text'">
+                                        <button mat-icon-button matSuffix (click)="hide = !hide"
+                                            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                        </button>
                                         <mat-error *ngIf="loginForm.hasError('required', 'password')">password is
                                             required</mat-error>
                                     </mat-form-field>

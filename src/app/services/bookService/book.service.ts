@@ -18,4 +18,10 @@ export class BookService {
   removeItem(num){
     return this.httpService.postCart('Cart/RemoveCartItem?productId='+num,{});
   }
+  reduceQuantity(product_id,quantityToRemove){
+    return this.httpService.postCart('Cart/ReduceBookQuantity?productId='+product_id+'&quantityToRemove='+quantityToRemove,{})
+  }
+  updateQuantity(data){
+    return this.httpService.postCart('Cart/UpdateCart',data)
+  }
 }

@@ -67,13 +67,13 @@ export class RegisterComponent implements OnInit {
       };
       this.userService.registerUser(newUser).subscribe((response) => {
         console.log(' register successfulll', response);
-        this.router.navigate(['login']);
+        this.router.navigate(['']);
       });      
     } catch (error) {
       console.log(error);
     }
   };
   login() {
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
   }
 }

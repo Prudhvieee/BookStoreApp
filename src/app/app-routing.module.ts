@@ -8,8 +8,8 @@ import { OrderComponent } from './component/order/order.component';
 import { RegisterComponent } from './component/register/register.component';
 
 const routes: Routes = [
-  { path: '', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: '', component: LoginComponent },
   {path: 'dashboard',component: DashboardComponent,
     children:[
       { path: '', component: GetbooksComponent },

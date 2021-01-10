@@ -15,4 +15,12 @@ export class UserService {
     console.log("data in user service", data);
     return this.httpService.post('User/Login', data);
   }
+  customerDetails(data:any){
+    console.log("data in user service",data);
+    return this.httpService.post('CustomerDetails/AddCustomerDetails',data);
+  }
+  orderPlaced(data){
+    console.log("data in user service", data);
+    return this.httpService.postCart('Order/PlaceOrder',data)
+  }
 }

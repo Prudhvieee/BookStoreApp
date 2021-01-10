@@ -43,6 +43,6 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['forgotPassword']);
   }
   register() {
-    this.router.navigate(['']);
+    this.router.navigate(['register']);
   }
 }

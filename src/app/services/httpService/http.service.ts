@@ -13,7 +13,6 @@ export class HttpService {
     return this.http.post(this.baseUrl + url , data);
   }
   postCart(url: string,data: any){
-    this.token=localStorage.getItem('token');
     let options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -26,7 +25,6 @@ export class HttpService {
     return this.http.post(this.baseUrl + url , data,options);
   }
   get(url:any) {
-    this.token=localStorage.getItem('token');
     let options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

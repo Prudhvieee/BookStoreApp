@@ -1,3 +1,4 @@
+<app-headers [childMessage]="bag"></app-headers>
 <div class="flexrow">
     <mat-card *ngFor=" let book of booksArray" class="grid-item">
         <mat-card-content class="cover">
@@ -10,9 +11,9 @@
             </span>
         </mat-card-content>
         <div>
-            <button class="butn" *ngIf='book.added' mat-raised-button (click)="addcart(book)">ADDED TO BAG</button>
+            <button class="butn" *ngIf='book.addedToCart' mat-raised-button (click)="addcart(book)">ADDED TO BAG</button>
         </div>
-        <div class="butt" *ngIf='!book.added'>
+        <div class="butt" *ngIf='!book.addedToCart'>
             <button class="but"  mat-raised-button (click)="addcart(book)">add to bag</button>
             <button class="whishlist" mat-raised-button>wishlist</button>
         </div>

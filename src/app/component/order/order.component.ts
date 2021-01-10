@@ -15,4 +15,5 @@ export class OrderComponent implements OnInit {
   goToDashboard(){
     this.router.navigate(['dashboard'])
   }
+  
 }

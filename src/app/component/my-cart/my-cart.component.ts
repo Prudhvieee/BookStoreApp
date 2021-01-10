@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BookService } from 'src/app/services/bookservice/book.service';
-import { GetbooksComponent } from '../getbooks/getbooks.component';
+import { UserService } from '../../services/userService/user.service';
 
 @Component({
   selector: 'app-my-cart',
@@ -11,34 +11,60 @@ import { GetbooksComponent } from '../getbooks/getbooks.component';
   styleUrls: ['./my-cart.component.scss'],
 })
 export class MyCartComponent implements OnInit {
-  @Input() booksArray: Array<any> = [];
+  constructor(
+    private bookService: BookService,
+    private router: Router,
+    private snackbar: MatSnackBar,
+    private userService: UserService,
+    private formBuilder: FormBuilder
+  ) {}
   panelOpenState = true;
   customerForm: FormGroup;
   books: Array<any> = [];
   addedBooks: Array<any> = [];
   i: any = 1;
-  constructor(
-    private bookService: BookService,
-    private router: Router,
-    private snackbar: MatSnackBar
-  ) {}
+  bag: number;
+  @Input() childMessage: number | undefined;
 
   ngOnInit(): void {
-    this.customerForm = new FormGroup({
-      firstName: new FormControl(),
-      PhoneNumber: new FormControl(),
-      PinCode: new FormControl(),
-      Locality: new FormControl(),
-      Address: new FormControl(),
-      City: new FormControl(),
-      LandMark: new FormControl(),
+    this.customerForm = this.formBuilder.group({
+      fullname: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      pincode: ['', [Validators.required]],
+      fullAddress: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      state: ['', [Validators.required]],
     });
     this.cartItems();
-    console.log(this.books);
   }
-  checkout() {
-    this.router.navigate(['order']);
-  }
+  Customer = (customerForm: {
+    fullname: any;
+    phone: any;
+    pincode: any;
+    fullAddress: any;
+    email: any;
+    city: any;
+    state: any;
+  }) => {
+    try {
+      let newUser = {
+        fullname: customerForm.fullname,
+        phone: customerForm.phone,
+        pincode: customerForm.pincode,
+        fullAddress: customerForm.fullAddress,
+        email: customerForm.email,
+        city: customerForm.city,
+        state: customerForm.state,
+      };
+      this.userService.customerDetails(newUser).subscribe((response) => {
+        console.log('Customer details added sucessfully sucessfully', response);
+        this.nextStep();
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   step = 0;
   setStep(index: number) {
     this.step = index;
@@ -46,48 +72,54 @@ export class MyCartComponent implements OnInit {
   nextStep() {
     this.step++;
   }
-  add(product: { isValid: boolean; product_id: any }, action: any) {
-    product.isValid = true;
-    for (let b of this.books) {
-      if (product.product_id == b.product_id) {
-        if (this.i < 5) {
-          this.i++;
-        } else {
-          this.snackbar.open('You cannot make quantity more than', action, {
-            duration: 2000,
-          });
-          product.isValid = false;
-        }
-      }
+  updateQuantity(book, action) {
+    if (book.quantityToBuy > book.product.quantity) {
+      this.snackbar.open('you cannot make quantity more than ', action, {
+        duration: 2000,
+      });
+    } else {
+      this.bookService.updateQuantity(book).subscribe((data) => {
+        console.log(data, 'quantity increased');
+        this.cartItems();
+      });
     }
   }
-  remove(product: { isValid: boolean; product_id: any }, action: any) {
-    product.isValid = true;
-    for (let b of this.books) {
-      if (product.product_id == b.product_id) {
-        if (this.i > 1) {
-          this.i--;
-        } else {
-          this.snackbar.open('You cannot make quantity less than', action, {
-            duration: 2000,
-          });
-          product.isValid = false;
-        }
-      }
+  reduce_quantity(book, quantity: any, action: string) {
+    if (book.quantityToBuy > 1) {
+      this.bookService
+        .reduceQuantity(book.product_id, quantity)
+        .subscribe((result) => {
+          book.isValid = true;
+          this.cartItems();
+        });
+    } else {
+      this.snackbar.open('You cannot make quantity less than', action, {
+        duration: 2000,
+      });
+      book.isValid = false;
     }
   }
   removeItem(product) {
-    console.log('product_id', product);
     this.books.splice(product, 1);
     this.bookService.removeItem(product.product_id).subscribe((res) => {
       console.log('remove item', res);
+      this.cartItems();
     });
   }
   cartItems() {
     this.bookService.cartItems().subscribe((res) => {
       console.log('cartItems', res);
       this.books = res['result'];
-      console.log('books array', this.books);
+      this.bag = this.books.length;
+    });
+  }
+  checkout() {
+    this.router.navigate(['order']);
+  }
+  orderPlaced(book) {
+    this.userService.orderPlaced(book).subscribe((res) => {
+      console.log('orderPlaced', res);
+      this.checkout();
     });
   }
 }
