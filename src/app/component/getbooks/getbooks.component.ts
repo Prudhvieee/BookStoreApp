@@ -45,4 +45,7 @@ export class GetbooksComponent implements OnInit {
       this.bag = this.books.length;
     });
   }
+  addToWishlist(book){
+    
+  }
 }

@@ -28,10 +28,12 @@
                                         <mat-icon>remove_circle_outline</mat-icon>
                                     </button>
                                     {{book.quantityToBuy}}
-                                    <button mat-icon-button *ngIf="book.isValid" (click)="updateQuantity(book,book.product.quantity)">
+                                    <button mat-icon-button *ngIf="book.isValid"
+                                        (click)="updateQuantity(book,book.product.quantity)">
                                         <mat-icon>add_circle_outline</mat-icon>
                                     </button>
-                                    <button mat-icon-button *ngIf="!book.isValid" (click)="updateQuantity(book,book.product.quantity)">
+                                    <button mat-icon-button *ngIf="!book.isValid"
+                                        (click)="updateQuantity(book,book.product.quantity)">
                                         <mat-icon>add_circle_outline</mat-icon>
                                     </button>
                                     <button mat-stroked-button (click)="removeItem(book)">remove</button>
@@ -118,25 +120,22 @@
                     <mat-panel-title>Order</mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="product-img-div" *ngFor="let book of books">
-                    <div>
-                        <mat-card-content class="cover">
-                            <img src={{book.product.bookImage}}>
-                        </mat-card-content>
-                    </div>
+                    <mat-card-content class="cover">
+                        <img class="image" src={{book.product.bookImage}}>
+                    </mat-card-content>
                     <div class="product-div">
                         <mat-card-content class="detail">
-                            <div>
-                                <mat-card-title>{{book.product.bookName}}</mat-card-title><br>
-                                <mat-card-subtitle>by {{book.product.author}}</mat-card-subtitle><br>
-                                <span><b>Rs {{book.product.price}}</b></span>
-                            </div>
+                            <mat-card-title>{{book.product.bookName}}</mat-card-title><br>
+                            <mat-card-subtitle>by {{book.product.author}}</mat-card-subtitle><br>
+                            <span><b>Rs {{book.Price}}</b></span>
                         </mat-card-content>
                     </div>
-                    <div class="bottom">
-                        <button mat-raised-button color="primary" (click)="orderPlaced(book)">CheckOut</button>
+                    <div>
+                        <mat-action-row class="bottom">
+                            <button mat-raised-button color="primary" (click)="orderPlaced(book)">CheckOut</button>
+                        </mat-action-row>
                     </div>
                 </div>
-
             </mat-expansion-panel>
         </div>
     </mat-accordion>

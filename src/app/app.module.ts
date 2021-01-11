@@ -31,6 +31,7 @@ import { OrderComponent } from './component/order/order.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { WishlistComponent } from './component/wishlist/wishlist.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     GetbooksComponent,
     MyCartComponent,
     HeadersComponent,
-    OrderComponent
+    OrderComponent,
+    WishlistComponent
   ],
   imports: [
     BrowserModule,

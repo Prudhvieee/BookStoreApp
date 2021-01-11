@@ -14,8 +14,7 @@
   display: flex;
 }
 .product-div {
-  padding-top: 44px;
-  line-height: 28px;
+  line-height: 30px;
   margin-left: 15px;
   text-align: left;
 }
@@ -42,6 +41,7 @@
 .mat-expansion-panel {
   margin-top: 20px;
   margin-bottom: 20px;
+  line-height: 0px !important;
 }
 .mat-stroked-button{
   outline:none;

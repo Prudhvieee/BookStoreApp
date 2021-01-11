@@ -46,4 +46,7 @@ export class HeadersComponent implements OnInit {
       this.childMessage = this.books.length;
     });
   }
+  goToWishlist(){
+    this.router.navigate(['wishlist']);
+  }
 }

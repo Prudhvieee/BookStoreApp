@@ -15,7 +15,7 @@
         </div>
         <div class="butt" *ngIf='!book.addedToCart'>
             <button class="but"  mat-raised-button (click)="addcart(book)">add to bag</button>
-            <button class="whishlist" mat-raised-button>wishlist</button>
+            <button class="whishlist" mat-raised-button (click)="addToWishlist(book)">wishlist</button>
         </div>
     </mat-card>
 </div>

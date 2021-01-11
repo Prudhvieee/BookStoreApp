@@ -20,7 +20,6 @@ export class HttpService {
       })
     }
     this.token = localStorage.getItem('token')
-    console.log("getting token ", this.token);
     console.log(" data in http ", data);
     return this.http.post(this.baseUrl + url , data,options);
   }
@@ -32,7 +31,6 @@ export class HttpService {
       })
     }
     this.token = localStorage.getItem('token')
-    console.log("getting token ", this.token);
     console.log("options in httpservice ", options);
     return this.http.get<any>(this.baseUrl + url,options);
   }

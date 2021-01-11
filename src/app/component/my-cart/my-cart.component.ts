@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BookService } from 'src/app/services/bookservice/book.service';
 import { UserService } from '../../services/userService/user.service';
+import {CartService} from 'src/app/services/cartService/cart.service';
+
 
 @Component({
   selector: 'app-my-cart',
@@ -16,7 +18,8 @@ export class MyCartComponent implements OnInit {
     private router: Router,
     private snackbar: MatSnackBar,
     private userService: UserService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private cartService: CartService
   ) {}
   panelOpenState = true;
   customerForm: FormGroup;
@@ -100,7 +103,7 @@ export class MyCartComponent implements OnInit {
     }
   }
   removeItem(product) {
-    this.books.splice(product, 1);
+    //this.books.splice(product, 1);
     this.bookService.removeItem(product.product_id).subscribe((res) => {
       console.log('remove item', res);
       this.cartItems();
